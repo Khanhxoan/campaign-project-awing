@@ -113,8 +113,8 @@ const CreateCampaign = () => {
                     const listAdsPayload: IAdvertisement[] = (itemSubCampaignForm.ads ?? []).map(
                         (item) => {
                             const adsItemPayload: IAdvertisement = {
-                                name: item.name,
-                                quantity: !!item?.quantity ? Number(item.quantity) : 0,
+                                name: item?.name ?? "",
+                                quantity: !!item?.quantity ? Number(item?.quantity) : 0,
                             };
                             return adsItemPayload;
                         }

@@ -14,8 +14,8 @@ export interface IAdvertisement {
 }
 
 export interface IAdvertisementForm {
-    name: string;
-    quantity: number | string;
+    name?: string;
+    quantity?: number | string;
     isSelected?: boolean;
     isErrorName?: boolean;
     isErrorQuantity?: boolean;

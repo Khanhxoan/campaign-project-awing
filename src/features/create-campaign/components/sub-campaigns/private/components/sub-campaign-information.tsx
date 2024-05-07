@@ -27,7 +27,7 @@ const SubCampaignComponent = ({
         (subCampaignSelected?.ads ?? []).filter((item) => !!item.isSelected).length > 0;
     const isSelectedAll =
         (subCampaignSelected?.ads ?? []).filter((item) => !!item.isSelected).length ===
-        (subCampaignSelected?.ads ?? []).length;
+            (subCampaignSelected?.ads ?? []).length && (subCampaignSelected?.ads ?? []).length > 0;
 
     const handleAddNewAds = () => {
         const newAds = {
@@ -74,6 +74,11 @@ const SubCampaignComponent = ({
                 });
             }
         }
+        handleUpdateListSubCampaigns({ ...subCampaignSelected, ads: listAdsUpdated });
+    };
+
+    const handleDeleteAllAds = () => {
+        const listAdsUpdated: IAdvertisementForm[] = [];
         handleUpdateListSubCampaigns({ ...subCampaignSelected, ads: listAdsUpdated });
     };
 
@@ -153,16 +158,29 @@ const SubCampaignComponent = ({
                                         }`}
                                     />
                                 </TableCell>
-                                <TableCell>
-                                    <Typography>
-                                        Name <span style={{ color: "red" }}>*</span>
-                                    </Typography>
-                                </TableCell>
-                                <TableCell>
-                                    <Typography>
-                                        Quantity <span style={{ color: "red" }}>*</span>
-                                    </Typography>
-                                </TableCell>
+                                {isSelectedAll ? (
+                                    <>
+                                        <TableCell>
+                                            <IconButton onClick={handleDeleteAllAds}>
+                                                <Delete />
+                                            </IconButton>
+                                        </TableCell>
+                                        <TableCell />
+                                    </>
+                                ) : (
+                                    <>
+                                        <TableCell>
+                                            <Typography>
+                                                Name <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell>
+                                            <Typography>
+                                                Quantity <span style={{ color: "red" }}>*</span>
+                                            </Typography>
+                                        </TableCell>
+                                    </>
+                                )}
                                 <TableCell align="center">
                                     <Button variant="outlined" onClick={handleAddNewAds}>
                                         <Add /> Add new
