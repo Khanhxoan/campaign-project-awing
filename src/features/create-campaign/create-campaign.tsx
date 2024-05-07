@@ -70,6 +70,9 @@ const CreateCampaign = () => {
             isErrorAll = true;
             setCampaignInformationForm({ ...campaignInformationForm, isErrorName: true });
         }
+        if (!(listSubCampaigns.length > 0)) {
+            isErrorAll = true;
+        }
 
         const newListSubCampaignsForm = listSubCampaigns.map((itemSubCampaignForm) => {
             let newSubCampaignForm: ISubCampaignForm = { ...itemSubCampaignForm };
@@ -89,6 +92,9 @@ const CreateCampaign = () => {
                 }
                 return newItemAdsForm;
             });
+            if (!(newListAdsForm.length > 0)) {
+                isErrorAll = true;
+            }
             newSubCampaignForm.ads = newListAdsForm;
             return newSubCampaignForm;
         });

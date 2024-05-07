@@ -21,7 +21,9 @@ const CampaignInformationComponent = ({
                             ...campaignInformationForm,
                             name: value,
                         };
-                        if (!!value) campaignInformationUpdated.isErrorName = false;
+                        if (!!value) {
+                            campaignInformationUpdated.isErrorName = false;
+                        }
                         setCampaignInformationForm(campaignInformationUpdated);
                     }}
                     required
