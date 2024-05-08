@@ -1,13 +1,5 @@
-import { Add, Delete } from "@mui/icons-material";
-import {
-    Button,
-    FormHelperText,
-    IconButton,
-    Input,
-    TableBody,
-    TableCell,
-    TableRow,
-} from "@mui/material";
+import Add from "@mui/icons-material/Add";
+import Delete from "@mui/icons-material/Delete";
 import Box from "@mui/material/Box";
 import Checkbox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -15,14 +7,19 @@ import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { IAdvertisementForm, ISubCampaignComponentProp } from "../../../../type";
-import { useState } from "react";
+import TableCell from "@mui/material/TableCell";
+import Button from "@mui/material/Button";
+import TableBody from "@mui/material/TableBody";
+import TableRow from "@mui/material/TableRow";
+import IconButton from "@mui/material/IconButton";
+import FormHelperText from "@mui/material/FormHelperText";
+
+import { type IAdvertisementForm, type ISubCampaignComponentProp } from "../../../../type";
 
 const SubCampaignComponent = ({
     subCampaignSelected,
     handleUpdateListSubCampaigns,
 }: ISubCampaignComponentProp) => {
-    // const [isSelectedAll, setIsSelectedAll] = useState<boolean>(false);
     const isHaveItemSelected =
         (subCampaignSelected?.ads ?? []).filter((item) => !!item.isSelected).length > 0;
     const isSelectedAll =
@@ -48,6 +45,7 @@ const SubCampaignComponent = ({
         const subCampaignSelectedUpdated = { ...subCampaignSelected, ads: listAdsUpdated };
         handleUpdateListSubCampaigns(subCampaignSelectedUpdated);
     };
+
     const handleUpdateAds = (adsUpdated: IAdvertisementForm, indexUpdated: number) => {
         const listAdsUpdated = (subCampaignSelected?.ads ?? []).map((item, index) => {
             if (index === indexUpdated) return adsUpdated;

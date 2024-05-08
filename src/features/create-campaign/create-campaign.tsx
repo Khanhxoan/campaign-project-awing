@@ -1,50 +1,43 @@
+import { useState } from "react";
+import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import { useState } from "react";
+
 import {
     CREATE_CAMPAIGN_TAB_INDEX,
     CREATE_CAMPAIGN_TAB_NAME,
+    defaultCampaignInformation,
+    defaultCampaignItem,
 } from "../../constants/create-campaign/create-campaign";
+
 import CampaignInformation from "./components/campaign-information";
 import SubCampaigns from "./components/sub-campaigns";
 import {
-    IAdvertisement,
-    IAdvertisementForm,
-    ICampaignInformation,
-    ICampaignInformationForm,
-    ICreateCampaign,
-    ISubCampaign,
-    ISubCampaignForm,
+    type IAdvertisement,
+    type IAdvertisementForm,
+    type ICampaignInformation,
+    type ICampaignInformationForm,
+    type ICreateCampaign,
+    type ISubCampaign,
+    type ISubCampaignForm,
 } from "./type";
-import { Typography } from "@mui/material";
 
-const defaultCampaignItem = {
-    name: "Sub campaign 1",
-    status: true,
-    ads: [
-        {
-            name: "Advertisement 1",
-            quantity: 0,
-        },
-    ],
-};
 const CreateCampaign = () => {
     const [tabSelected, setTabSelected] = useState<number>(
         CREATE_CAMPAIGN_TAB_INDEX.CAMPAIGN_INFORMATION
     );
-    const [isAlertError, setIsAlertError] = useState<boolean>(false);
-    const handleChangeTab = (tabIndex: number) => {
-        setTabSelected(tabIndex);
-    };
-
+    const [indexSubCampaignSelected, setIndexSubCampaignSelected] = useState<number>(0);
     const [campaignInformationForm, setCampaignInformationForm] =
-        useState<ICampaignInformationForm>({ name: "", describe: "", isErrorName: false });
+        useState<ICampaignInformationForm>(defaultCampaignInformation);
     const [listSubCampaigns, setListSubCampaigns] = useState<ISubCampaignForm[]>([
         { ...defaultCampaignItem },
     ]);
-    const [indexSubCampaignSelected, setIndexSubCampaignSelected] = useState<number>(0);
+
+    const handleChangeTab = (tabIndex: number) => {
+        setTabSelected(tabIndex);
+    };
 
     const handleAddSubCampaign = () => {
         const newCampaignItem = {

@@ -6,7 +6,9 @@ import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { ISubCampaign, ISubCampaignsComponentsProp } from "../../type";
+
+import { type ISubCampaign, type ISubCampaignsComponentsProp } from "../../type";
+
 import SubCampaignComponent from "./private/components/sub-campaign-information";
 
 const SubCampaignsComponent = ({
@@ -16,6 +18,10 @@ const SubCampaignsComponent = ({
     setIndexSubCampaignSelected,
     indexSubCampaignSelected,
 }: ISubCampaignsComponentsProp) => {
+    const subCampaignSelected = (listSubCampaigns ?? []).find(
+        (item, index) => index === indexSubCampaignSelected
+    );
+
     const handleSelectSubCampaign = (indexSelect: number) => {
         setIndexSubCampaignSelected(indexSelect);
     };
@@ -30,9 +36,6 @@ const SubCampaignsComponent = ({
         setListSubCampaigns(listSubCampaignsUpdated);
     };
 
-    const subCampaignSelected = (listSubCampaigns ?? []).find(
-        (item, index) => index === indexSubCampaignSelected
-    );
     return (
         <Box>
             {/* List sub campaign cards */}
